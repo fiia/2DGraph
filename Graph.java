@@ -9,7 +9,7 @@ import java.util.Scanner;
 /**
  *
  * @author josefiina
- * 
+ * This file contains functions for manipulating nodes and edges 
  * 
  */
 
@@ -75,22 +75,20 @@ public class Graph {
     //asks coordinates of node and calls removeNode-function
     public void removeOne() {
         this.reader = new Scanner(System.in);
-        System.out.println("Anna poistettavan solmun koordinaatit muodossa x,y:");
+        System.out.println("Write coordinates as x,y:");
         String line = reader.nextLine();
         String parts[] = line.split(",");
         double x = Double.parseDouble(parts[0]);
         double y = Double.parseDouble(parts[1]);
         Node found = getNode(x, y);
         
-        if(found==null) { System.out.println("Solmua ei löydy"); }
+        if(found==null) { System.out.println("Unable to find node"); }
         else {
             System.out.println("Removing " + found.toString());
             removeNode(found); }
     }
     
     //prints in and out degrees to a file
-    //suomenkielinen tehtävänanto ei määritellyt solmujen toivottua järjestystä
-    //joten ne on degrees.txt tiedostossa samassa järjestyksessä kuin tdata.txt:ssa
     public void inOutDegrees(String filename){
         try {
             PrintWriter writer = new PrintWriter(filename, "UTF-8");
@@ -169,7 +167,7 @@ public class Graph {
         }
     }
     
-    //euklidean distance
+    //euclidean distance
     public double eukDist(Node node, Node node2) {
         return Math.sqrt(
                 Math.pow(node.getx()-node2.getx(), 2) +
@@ -228,7 +226,8 @@ public class Graph {
         neighbours.stream().forEach(n -> node.addAdjacent(n));
     }
     
-    //tekee uuden listan reuna-arvoista ja säilöö sen, siirtää alkuperäisen backupiin
+    //creates a new list from outliers and saves it as this.list, previous list is moved to backup
+    //modify filter values to change definition of an outlier
     public void connectOutliers() {
         ArrayList<Node> newlist = new ArrayList<Node>();
         this.list.stream()
@@ -241,7 +240,8 @@ public class Graph {
         this.list = newlist;
     }
     
-    //fully connected, find shorted distances
+    //find shorted distances in fully connected graph
+    //remove comments from lines related to variable double weight to count weight of the tree
     public void minimumSpanningTree(String filename) {
         try {
             PrintWriter writer = new PrintWriter(filename, "UTF-8");
