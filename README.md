@@ -1,4 +1,4 @@
-# 2DspaceGraph
+# 2DGraph
 
 Basic linked digraph for observing relations of points in two dimensional space.
 
