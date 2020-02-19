@@ -1,4 +1,4 @@
 # 2DspaceGraph
 Project
 
-Basic linked graph for observing relations of points in 2D space.
+Basic linked graph for observing relations of points in two dimensional space.
